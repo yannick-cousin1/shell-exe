@@ -1,0 +1,5 @@
+#! /bin/bash
+
+a=$(useradd -p p -u 2345 prenomnom)
+
+echo $a
