@@ -1,11 +1,23 @@
 #!/bin/bash
 
-for ((i=0 ; i<12 ; i++))
-do
-	for ((j=0 ; j<5 ; j++))
-	do
-		
-	done
-	
-	useradd -d "/home/$(
 
+sed 1,1d /home/yann/Scripts/BashHWork/BashHWork/Job9/Shell_Userlist.csv | cat | while read line
+do
+	for (( i=1 ; i<=5 ; i++ ))
+	do
+		((a$i=$(echo $line | cut -d "," -f $i)))
+	done
+
+		if [ $a5 = "User" ]
+		then
+			useradd -u $a1 "$a2.$a3"
+			echo -e "$a4\n$a4\n" | passwd "$a2.$a3"
+		elif [ $a5 = "Admin" ]
+		then
+			useradd -u $a1 "$a2.$a3"
+			echo -e "$a4\n$a4\n" | passwd "$a2.$a3"
+			echo "$a2.$a3 ALL=(ALL:ALL) ALL" >> /etc/sudoers
+		else
+			echo "erreur"
+		fi
+done
