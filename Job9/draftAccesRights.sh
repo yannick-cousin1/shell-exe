@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#This was my first try, but it doesn't work . Variables "a$i" get good values but then they are reset to "0", I can't  understand why
 
 sed 1,1d /home/yann/Scripts/BashHWork/BashHWork/Job9/Shell_Userlist.csv | cat | while read line
 do
