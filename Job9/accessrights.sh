@@ -14,12 +14,13 @@ do
 	then
 		useradd -u "$a1" -m "${a2// /}${a3// /}"				#create user with uid (a1) and username (a2+a3 without
 		echo "${a2// /}${a3// /}:${a4// /}" | chpasswd				#spaces) and assign password (a4) to this user
-
+		userdel -r "${a2// /}${a3// /}"
 	elif [ "${a5%?}" = "Admin" ] 							#If last field = "Admin"
 	then
 		useradd -u "$a1" -m "${a2// /}${a3// /}"				#Do the same thing AND add this user to the group sudo
 		echo "${a2// /}${a3// /}:${a4// /}" | chpasswd				#which allow it to use the sudo command
 		adduser "${a2// /}${a3// /}" sudo					#(this group is in the sudoer file)
+		userdel -r "${a2// /}${a3// /}"
 	else
 		echo "incorrect line"
 	fi

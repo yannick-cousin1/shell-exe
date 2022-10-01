@@ -1,3 +1,17 @@
 #!/bin/bash
 
+username="$1"
+password="$2"
+
+
+#l1 is the first location given by the page ( it should be https://alcasar.laplateforme.io:3991/prelogin )
+l1=$(curl -I https://alcasar.laplateforme.io/intercept.php | grep Location | cut -d " " -f 2)
+
+
+#This line get the value of "challenge" . We should send it in the POST request to fill the form
+challenge=$(curl -I $l1 | grep Location | cut -d " " -f 2 | cut -d "&" -f 4 )
+
+#This line send the POST request to fill the form. But it doesn't work !
+curl -F "$challenge" -F "username=$username" -F "password=$password" https://alcasar.laplateforme.io/intercept.php
+
 
